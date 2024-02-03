@@ -4,6 +4,8 @@ START_PLACE = "город Самара"
 GEOCODER_SERVER = "https://geocode-maps.yandex.ru/1.x"
 GEOSEARCH_SERVER = "https://search-maps.yandex.ru/v1"
 STATIC_MAPS_SERVER = "https://static-maps.yandex.ru/1.x"
+MIN_ZOOM = 2
+MAX_ZOOM = 20
 
 
 def get_spn(response):
