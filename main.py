@@ -7,7 +7,7 @@ from pprint import pprint
 def refresh_map():
     global current_zoom, current_coords, mp
     check_zoom()
-    static_params = {"ll": ",".join(str(i) for i in current_coords), "l": "map", "z": str(current_zoom)}  # "spn": ",".join(str(i) for i in current_spn)}
+    static_params = {"ll": ",".join(str(i) for i in current_coords), "l": "sat,skl", "z": str(current_zoom)}  # "spn": ",".join(str(i) for i in current_spn)}
     resp = requests.get(help.STATIC_MAPS_SERVER, params=static_params)
     with open("mp.png", "wb") as mp:
         mp.write(resp.content)
@@ -53,16 +53,16 @@ while True:
                 current_zoom += 1
                 refresh_map()
             if keys[pg.K_UP]:
-                current_coords[1] += 45 / current_zoom ** 2
+                current_coords[1] += 45 / 2 ** current_zoom
                 refresh_map()
             if keys[pg.K_DOWN]:
-                current_coords[1] -= 45 / current_zoom ** 2
+                current_coords[1] -= 45 / 2 ** current_zoom
                 refresh_map()
             if keys[pg.K_LEFT]:
-                current_coords[0] -= 90 / current_zoom ** 2
+                current_coords[0] -= 90 / 2 ** current_zoom
                 refresh_map()
             if keys[pg.K_RIGHT]:
-                current_coords[0] += 90 / current_zoom ** 2
+                current_coords[0] += 90 / 2 ** current_zoom
                 refresh_map()
     SCREEN.fill((0, 0, 0))
     SCREEN.blit(mp, (0, 0))
